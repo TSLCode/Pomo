@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.main {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #282c34;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    /* smooth GPU-friendly animation */
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 2s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 2s ease;
+    will-change: transform, opacity;
+    z-index: 10;
+}
+
+/* Hidden: translate up and fade out (no display:none so transition runs) */
+header.hidden {
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Visible: default state */
+header.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    header {
+        transition: none;
+    }
+}
+
+/* ...existing code... */
+
+.header-toggle {
+    color: #222;
+    /* icon uses currentColor */
+    z-index: 20;
+    transition: opacity 160ms ease;
+    background: transparent;
+    border: none;
+}
+
+/* SVG rotation for open/closed states — transform on SVG for GPU acceleration */
+.header-toggle__icon {
+    display: block;
+    transition: transform 220ms cubic-bezier(.2, .9, .2, 1);
+    transform-origin: 50% 50%;
+}
+
+/* chevron up when open */
+.header-toggle__icon.open {
+    transform: rotate(0deg);
+}
+
+/* chevron down when closed */
+.header-toggle__icon.closed {
+    transform: rotate(180deg);
+}
+
+/* prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .header-toggle__icon {
+        transition: none;
+    }
+}
+
+/* ...existing code... */
